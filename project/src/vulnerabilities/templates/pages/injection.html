@@ -1,0 +1,25 @@
+{%extends "base.html" %}
+
+{% block title %}
+Injection page
+{% endblock %}
+
+{% block content %}
+<h1>Injection example</h1>
+<form method="GET" action="{% url 'injection' %}">
+    <fieldset>
+        <legend>Search for a user by name</legend>
+        <input type="text" name="query" placeholder="Enter name" required="required"></input>
+        <input type="submit" value="Search"></input>
+    </fieldset>
+</form>
+<!-- Showing results -->
+{% if results %}
+    <h2>Results:</h2>
+    <ul>
+    {% for result in results %}
+        <li>{{result}}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

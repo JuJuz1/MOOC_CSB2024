@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- This is a base html file which contains the structure for all the pages 
+All other html files inherit from this -->
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Project page{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'injection' %}">Injection</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main content block -->
+    <main>
+        {% block content %}
+        <!-- Default content goes here -->
+        {% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; <strong>MOOC Cyber Security Base 2024 Project - Juuso Piippo</strong></p>
+    </footer>
+</body>
+</html>
