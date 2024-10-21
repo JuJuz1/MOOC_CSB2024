@@ -7,17 +7,29 @@ header nav ul li {
     display: inline;
 }
 
-header nav ul li a {
+header nav > p {
+    display: inline;
+    color: white;
+    font-size: large;
+}
+
+header nav form {
+    margin-top: 0.5em;
+}
+
+header nav a {
     color: white;
     font-size: larger;
     margin-right: 1em;
 }
 
-header nav ul li a:hover {
-    text-decoration: underline;
-}
-
 footer {
     font-style: italic;
     margin-top: 2em;
+}
+
+#admin_panel {
+    position: absolute;
+    right: 0%;
+    top: 2%;
 }

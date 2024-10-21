@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- This is a base html file which contains the structure for all the pages 
+<!-- This is a base html file which contains the structure for all the pages
 All other html files inherit from this -->
 <head>
     {% load static %}
@@ -13,9 +13,24 @@ All other html files inherit from this -->
     <!-- Header -->
     <header>
         <nav>
+            <a href="{% url 'admin:index' %}" id="admin_panel">Admin panel</a>
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    <p>Logged in as {{ user.username }}, admin = {{ user.is_staff }}</p>
+                {% else %}
+                    <p>Logged in as {{ user.username }}</p>
+                {% endif %}
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <input type="submit" value="Log out"></input>
+            </form>
+            {% else %}
+                <a href="{% url 'login' %}">Log in</a>
+            {% endif %}
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'injection' %}">Injection</a></li>
+                <li><a href="{% url 'admin_only' %}">Admin only</a></li>
             </ul>
         </nav>
     </header>

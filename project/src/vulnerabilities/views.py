@@ -1,23 +1,23 @@
 from django.shortcuts import render
-import sqlite3
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
+from .utils import access_database
 
-# Create your views here.
+# Views
 
 def homePageView(request):
     return render(request, 'pages/home.html')
 
-
 def injectionPageView(request):
-    # Input value
-    query = request.GET.get('query', '')
-    results = []
-    if query:
-        conn = sqlite3.connect('db.sqlite3')
-        cursor = conn.cursor()
-        # How the attacker could get the name of the tables:
-        # ' UNION SELECT name FROM sqlite_master WHERE type='table' --
-        # Example injection to get the passwords of all admins: 
-        # ' UNION SELECT password FROM Users WHERE admin=1 --
-        response = cursor.execute(f"SELECT id FROM Users WHERE name LIKE '{query}'").fetchall()
-        results = response
+    results = access_database(request)
     return render(request, 'pages/injection.html', {'results': results})
+
+@login_required
+def adminPageView(request):
+    # FLAW: Broken access control
+    return render(request, 'pages/admin_only.html')
+    # FIX:
+    # Checking if the user is an admin (is_staff)
+    #if not request.user.is_staff:
+        #return HttpResponseForbidden("You are not an admin!")
+    #return render(request, 'pages/admin_access.html')
