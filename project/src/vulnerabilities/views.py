@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponseForbidden
-from .utils import getUsersWithClients, getClientOfUser, hash_md5, getHashes
+from .utils import getUsersWithClients, getClientOfUser, hash_md5, getHashes, createMessage, getMessages
 
 # Views
 
@@ -29,3 +30,13 @@ def adminPageView(request):
 def secureDataPageView(request):
     result = hash_md5(request)
     return render(request, 'pages/secure_data.html', {'result': result})
+
+@login_required
+def messagesPageView(request):
+    message = request.GET.get('message')
+    print(message)
+    # Not checking if it's ''
+    if message != None:
+        createMessage(message)
+    messages = getMessages()
+    return render(request, 'pages/messages.html', {'messages': messages})

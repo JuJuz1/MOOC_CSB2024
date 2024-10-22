@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import homePageView, searchPageView, adminPageView, secureDataPageView
-
+from .views import homePageView, searchPageView, adminPageView, secureDataPageView, messagesPageView
 # Urls
 
 urlpatterns = [
@@ -8,4 +7,5 @@ urlpatterns = [
     path('search/', searchPageView, name='search'),
     path('admin_only/', adminPageView, name='admin_only'),
     path('secure_data/', secureDataPageView, name='secure_data'),
+    path('messages/', messagesPageView, name='messages'),
 ]

@@ -1,7 +1,7 @@
 import sqlite3
 import hashlib
 from django.contrib.auth.hashers import make_password
-from .models import SecureData
+from .models import SecureData, Message
 
 # Utilities
 
@@ -62,3 +62,20 @@ def createSecureData(name, hash):
 def getHashes():
     hashes = SecureData.objects.all()
     return hashes
+
+def createMessage(data):
+    # FLAW: Insecure design?
+    # Depending on the fact that the user has to input something in the field (other than empty)
+    # Or just forgetting that the user can manually modify the url to make it .../?message=
+    empty = Message.objects.filter(message='')
+    if empty.count() > 0:
+        # Destroy all if there are empty messages (now considered an invalid database)
+        messages = getMessages()
+        messages.delete()
+    message = Message(message=data)
+    message.save()
+
+def getMessages():
+    messages = Message.objects.all()
+    print(messages)
+    return messages

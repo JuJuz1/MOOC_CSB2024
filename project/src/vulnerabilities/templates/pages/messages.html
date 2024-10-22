@@ -1,0 +1,28 @@
+{%extends "base.html" %}
+
+{% block title %}
+Messages page
+{% endblock %}
+
+{% block content %}
+<h1>Leave a message!</h1>
+<p>Here you can leave a message for others to see.</p>
+<p>The web server remembers all the messages it has received.</p>
+<form method="GET" action="{% url 'messages' %}">
+    {% csrf_token %}
+    <fieldset>
+        <input type="text" name="message" placeholder="Enter message" required="required"></input>
+        <input type="submit" value="Send"></input>
+    </fieldset>
+</form>
+<h2>Messages received:</h2>
+{% if user.is_authenticated %}
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{message.message}}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endif %}
+{% endblock %}
