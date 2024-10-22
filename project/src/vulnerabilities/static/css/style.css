@@ -26,6 +26,8 @@ header nav a {
 footer {
     font-style: italic;
     margin-top: 2em;
+    position: absolute;
+    bottom: 0;
 }
 
 #admin_panel {

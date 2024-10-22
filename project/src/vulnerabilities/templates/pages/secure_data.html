@@ -1,0 +1,21 @@
+{%extends "base.html" %}
+
+{% block title %}
+Secure data page
+{% endblock %}
+
+{% block content %}
+<h1>Secure data here!</h1>
+<form method="POST" action="{% url 'secure_data' %}">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Enter secure data you want to store</legend>
+        <input type="text" name="query" placeholder="Secure data" required="required"></input>
+        <input type="submit" value="Save"></input>
+    </fieldset>
+</form>
+{% if result %}
+    <h2>MD5 Hashed:</h2>
+    <p>{{result}}</p>
+{% endif %}
+{% endblock %}

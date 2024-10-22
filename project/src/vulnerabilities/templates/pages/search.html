@@ -1,16 +1,27 @@
 {%extends "base.html" %}
 
 {% block title %}
-Injection page
+Search page
 {% endblock %}
 
 {% block content %}
-<h1>Injection example</h1>
-<form method="GET" action="{% url 'injection' %}">
+<h1>Search</h1>
+<form method="POST" action="{% url 'search' %}">
+    {% csrf_token %}
     <fieldset>
         <legend>Search the client of a user</legend>
         <input type="text" name="query" placeholder="Enter name" required="required"></input>
         <input type="submit" value="Search"></input>
+        {% if users %}
+            <p>Users that have clients:</p>
+            <ul>
+            {% for user in users %}
+                <li>{{user}}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No available users that have clients. Try creating the database.</p>
+        {% endif %}
     </fieldset>
 </form>
 <!-- Showing results -->

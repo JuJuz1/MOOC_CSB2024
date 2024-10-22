@@ -1,10 +1,21 @@
 {%extends "base.html" %}
 
 {% block title %}
-Home page
+Admin only page
 {% endblock %}
 
 {% block content %}
 <h1>Admin page!</h1>
 <p>This page is reserved for admins only!</p>
+{% if hashes %}
+    <h2>Currently saved hashes:</h2>
+    <ul>
+    {% for hash in hashes %}
+        <li>USER: <strong>{{hash.user_name}}</strong> SAVED: <strong>{{hash.md5_hash}}</strong></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% if not user.is_staff %}
+    <strong>You are not an admin. If you are seeing this you have broken access!</strong>
+{% endif %}
 {% endblock %}
