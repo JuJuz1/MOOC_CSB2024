@@ -34,7 +34,6 @@ def secureDataPageView(request):
 @login_required
 def messagesPageView(request):
     message = request.GET.get('message')
-    print(message)
     # Not checking if it's ''
     if message != None:
         createMessage(message)

@@ -72,10 +72,16 @@ def createMessage(data):
         # Destroy all if there are empty messages (now considered an invalid database)
         messages = getMessages()
         messages.delete()
+    # FLAW: over 100 characters?
+    # Not restricted at all atm
+    print('Message length:', len(data))
     message = Message(message=data)
+    # FIX:
+    # Limit it here or in the html document
+    #...required="required" maxLength="100"></input>
+    #data = data[:100]
     message.save()
 
 def getMessages():
     messages = Message.objects.all()
-    print(messages)
     return messages

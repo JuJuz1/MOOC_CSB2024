@@ -11,6 +11,7 @@ Messages page
 <form method="GET" action="{% url 'messages' %}">
     {% csrf_token %}
     <fieldset>
+        <!-- maxLength="100" -->
         <input type="text" name="message" placeholder="Enter message" required="required"></input>
         <input type="submit" value="Send"></input>
     </fieldset>
