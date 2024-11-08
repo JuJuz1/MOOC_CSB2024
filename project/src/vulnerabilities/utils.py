@@ -64,7 +64,7 @@ def getHashes():
     return hashes
 
 def createMessage(data):
-    # FLAW: Insecure design?
+    # FLAW: Insecure design
     # Depending on the fact that the user has to input something in the field (other than empty)
     # Or just forgetting that the user can manually modify the url to make it .../?message=
     empty = Message.objects.filter(message='')
@@ -72,9 +72,9 @@ def createMessage(data):
         # Destroy all if there are empty messages (now considered an invalid database)
         messages = getMessages()
         messages.delete()
-    # FLAW: over 100 characters?
-    # Not restricted at all atm
-    print('Message length:', len(data))
+    # FLAW: Security misconfiguration
+    # Data length not restricted at all
+    # Message has max_length=100
     message = Message(message=data)
     # FIX:
     # Limit it here or in the html document
