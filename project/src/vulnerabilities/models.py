@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 import hashlib
 
 class SecureData(models.Model):
@@ -8,9 +9,8 @@ class SecureData(models.Model):
     # --> Duplicate primary key
     md5_hash = models.CharField(max_length=32, primary_key=True)
     # FIX:
-    # Use a secure hashing algorithm to generate a unique primary key
-    # See Message class's overridden method save below
-    #id = models.CharField(max_length=10, primary_key=True)
+    # Use a UUID as the primary key to ensure uniqueness
+    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
 class Message(models.Model):
     id = models.CharField(max_length=10, primary_key=True)

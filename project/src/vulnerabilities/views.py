@@ -33,8 +33,9 @@ def secureDataPageView(request):
 
 @login_required
 def messagesPageView(request):
+    # FLAW: Insecure design part 1
     message = request.GET.get('message')
-    # Not checking if it's ''
+    # Not checking if it's empty
     if message != None:
         createMessage(message)
     messages = getMessages()
