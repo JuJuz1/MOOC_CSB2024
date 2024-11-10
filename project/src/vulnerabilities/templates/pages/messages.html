@@ -9,8 +9,10 @@ Messages page
 <p>Here you can leave a message for others to see.</p>
 <p>The web server remembers all the messages it has received.</p>
 <form method="GET" action="{% url 'messages' %}">
-    <!-- FLAW: CSRF part 2-->
-    <!-- {% csrf_token %} -->
+    <!-- FLAW: CSRF part 2
+     Not having csrf_token check -->
+    <!-- FIX:
+     {% csrf_token %} -->
     <fieldset>
         <!-- maxLength="100" -->
         <input type="text" name="message" placeholder="Enter message" required="required"></input>
