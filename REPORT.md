@@ -1,6 +1,5 @@
 # Report of the flaws
 
-https://github.com/JuJuz1/MOOC_CSB2024 
 Installation instructions -> see README
 
 FLAW 1: Broken access control
