@@ -24,7 +24,7 @@ def adminPageView(request):
     # Checking if the user is an admin (is_staff)
     #if not request.user.is_staff:
         #return HttpResponseForbidden("You are not an admin!")
-    #return render(request, 'pages/admin_access.html')
+    #return render(request, 'pages/admin_only.html', {'hashes': hashes})
 
 @login_required
 def secureDataPageView(request):
