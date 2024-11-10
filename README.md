@@ -23,7 +23,7 @@ Clone the project from the repository. In a terminal (such as git bash), head ov
 - python manage.py createsuperuser -> create an admin user
 - python manage.py runserver -> start the server (most likely at http://127.0.0.1:8000)
 
-To test CSRF (works on Chrome at least):
+To test CSRF (Firefox and Chrome at least):
 1. Login as any user on the first server
 2. Leave some messages to the page
 3. Start a second server -> python -m http.server 9000
