@@ -21,14 +21,14 @@ Clone the project from the repository. In a terminal (such as git bash), head ov
 - python manage.py migrate -> initialize the Django SQLite database
 - python create_db.py -> Create the dummy database
 - python manage.py createsuperuser -> create an admin user
-- python manage.py runserver -> start the server (most likely at http://127.0.0.1:8000)
+- python manage.py runserver -> start the server (most likely at localhost:8000)
 
 To test CSRF (Firefox and Chrome at least):
 1. Login as any user on the first server
 2. Leave some messages to the page
 3. Start a second server -> python -m http.server 9000
-4. Go to the csrf.html -> http://localhost:9000/project/src/vulnerabilities/templates/pages/csrf.html
-(or navigate to it from http://localhost:9000/)
+4. Go to the csrf.html -> localhost:9000/project/src/vulnerabilities/templates/pages/csrf.html
+(or navigate to it from localhost:9000)
 5. Reload messages page on the first server -> only the latest message should be left
 
 If you want to test non-admin functionality: 
