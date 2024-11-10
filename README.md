@@ -28,7 +28,8 @@ To test CSRF (Firefox and Chrome at least):
 1. Login as any user on the first server
 2. Leave some messages to the page
 3. Start a second server -> python -m http.server 9000
-4. Go to the csrf.html -> http://localhost:9000/project/src/vulnerabilities/templates/pages/csrf.html
+4. Go to the csrf.html on the second server -> 
+http://localhost:9000/project/src/vulnerabilities/templates/pages/csrf.html
 (or navigate to it from http://localhost:9000)
 5. Reload messages page on the first server -> only the latest message should be left
 
