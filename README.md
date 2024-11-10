@@ -1,7 +1,8 @@
 # MOOC_CSB2024
 Project containing flaws from the OWASP 2021 top ten list for a web application. Made for the MOOC course Cyber Security Base 2024.
-
 Top ten list: https://owasp.org/www-project-top-ten/
+
+Made using Python + Django
  
 Currently implemented flaws:
 1. Broken access control
