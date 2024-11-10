@@ -1,7 +1,5 @@
 # Report of the flaws
 
-Installation instructions -> see README
-
 FLAW 1: Broken access control
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/views.py#L22 
 Broken access control is a serious vulnerability that can occur when an application fails to do the appropriate authorization checks for the user. This can lead to a situation where the unauthorized user can access information and resources they have no permission to. In this current implementation, the flaw could be exploited by any logged in user as the @login_required decorator ensures. The user could access the page, which should be reserved to admins only, by manually navigating to the url or by clicking the link in the header. Data to the page comes from the secure data page where any logged in user can save data in a MD5-hashed form.
