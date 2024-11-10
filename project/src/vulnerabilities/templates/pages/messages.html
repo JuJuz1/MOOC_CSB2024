@@ -10,8 +10,9 @@ Messages page
 <p>The web server remembers all the messages it has received.</p>
 <form method="GET" action="{% url 'messages' %}">
     <!-- FLAW: CSRF part 2
-     Not having csrf_token check -->
+     Not having csrf_token check and form uses GET -->
     <!-- FIX:
+     method="POST"
      {% csrf_token %} -->
     <fieldset>
         <!-- maxLength="100" -->
