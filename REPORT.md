@@ -2,7 +2,7 @@
 
 ## FLAW 1: Broken access control
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/views.py#L22 
-Broken access control is a serious vulnerability that can occur when an application fails to do the appropriate authorization checks for the user. This can lead to a situation where the unauthorized user can access information and resources they have no permission to. In this current implementation, the flaw could be exploited by any logged in user as the @login_required decorator ensures. The user could access the page, which should be reserved to admins only, by manually navigating to the url or by clicking the link in the header. Data to the page comes from the secure data page where any logged in user can save data in a MD5-hashed form.
+Broken access control is a serious vulnerability that can occur when an application fails to do the appropriate authorization checks for the user. This can lead to a situation where the unauthorized user can access information and resources they have no permission to. In this current implementation, the flaw could be exploited by any logged-in user as the @login_required decorator ensures. The user could access the page, which should be reserved to admins only, by manually navigating to the url or by clicking the link in the header. Data to the page comes from the secure data page where any logged-in user can save data in a MD5-hashed form.
 
 As commented out in the code, the fix is very simple. Checking if the user is an admin and rendering a HttpResponseForbidden page if a non-admin tries to access the page. Only rendering the page with the hashed data if the user is an admin.
 
@@ -21,7 +21,7 @@ Parameterizing the query would eliminate the possibility of an injection. This w
 ## FLAW 4: Insecure design
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/views.py#L37 
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/utils.py#L70 
-Insecure design is a broad term for the design failures in software which occur due to insufficient security considerations. The potential risks or attacks a malicious actor could exploit are not fully covered by the system’s security measures. In this example, the user could leave a message to the site using the messages page. The flaw arises from the fact that the server assumes the input is validated properly and that there are no other ways to input data to the server. The latter which could be done by manually constructing the url to input an empty string. Ultimately, the design choice of invalidating the database and clearing it when there exists an empty message leads to the root of the flaw.
+Insecure design is a broad term for the design failures in software which occur due to insufficient security considerations. The potential risks or attacks a malicious actor could exploit are not fully covered by the system’s security measures. In this example, the user could leave a message to the site using the messages page. The flaw arises from the fact that the server assumes the input is validated properly and that there are no other ways to input data to the server. The latter could be done by manually constructing the url to input an empty string. Ultimately, the design choice of invalidating the database and clearing it when there exists an empty message leads to the root of the flaw.
 
 Fixing this issue would require multiple steps. First, the database should not be cleared if there exists an empty message (i.e. empty string). And secondly, the server should get the input using POST, not GET. This way the url couldn’t be manually constructed to send invalid considered data.
 
@@ -29,7 +29,7 @@ Fixing this issue would require multiple steps. First, the database should not b
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/utils.py#L78 
 Security misconfiguration is a security-related flaw in applications that arises when the application or its components are not securely configured. In this example, the user input is not restricted by length which could lead to errors at the database level and exhaust server resources. The latter could lead to DoS (Denial of Service) attacks.
 
-Limiting the length of the input directly in the html document and at the server level would fix this issue correctly.
+Limiting the length of the input directly in the HTML document and at the server level would fix this issue correctly.
 
 ## FLAW 6: Software and data integrity failures
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/models.py#L10 
