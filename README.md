@@ -13,6 +13,8 @@ Currently implemented flaws:
 6. Software and data integrity failures
 7. CSRF (not on the list, but accepted by the course)
 
+See [REPORT.md](./REPORT.md) for a full explanation of the flaws
+
 ## Installation instructions:
 Ensure you have python 3.7+ installed
 - python3 –version (or python –version)
