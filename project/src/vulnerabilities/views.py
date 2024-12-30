@@ -33,6 +33,11 @@ def secureDataPageView(request):
 
 @login_required
 def messagesPageView(request):
+    # FLAW: CSRF part 3
+    # FIX:
+    # Check the request method and only then create the message
+    #if request.method == 'POST':
+        #message = request.POST.get('message')
     # FLAW: Insecure design part 1
     message = request.GET.get('message')
     # Not checking if it's empty
