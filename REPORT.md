@@ -40,6 +40,7 @@ Using Django’s built-in UUID (Universally Unique Identifier) generator ensures
 ## FLAW 7: CSRF (Cross-site request forgery)
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/templates/pages/csrf.html#L6 
 https://github.com/JuJuz1/MOOC_CSB2024/blob/35646f178f73f130094bbb76f2c8a079317ba3c0/project/src/vulnerabilities/templates/pages/messages.html#L13 
+https://github.com/JuJuz1/MOOC_CSB2024/blob/bffff56c36a1c330ab6f0394506082cbd9d79f9a/project/src/vulnerabilities/views.py#L36 
 CSRF is an attack where a user or a website can mislead a logged-in user to perform actions without their consent. For this project, the attacker has created a malicious web page called csrf.html which, when loaded, sends a get request to the messages page with an empty input. This works because the server doesn’t have proper CSRF protections and the GET request includes the session cookie.
 
 Fixing the flaw involves two simple steps. The messages form should include a CSRF token and the form should use POST instead of GET for requests. Having the CSRF token check would tie the user’s session to the authenticated user. Using POST would prevent using image tags or other methods to trigger unwanted actions.
